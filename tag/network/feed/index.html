@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>network &#8211; Artillery Royale</title>
+	<atom:link href="https://weheartprojects.com/tag/network/feed/" rel="self" type="application/rss+xml" />
+	<link>https://weheartprojects.com/</link>
+	<description>Turn based 2D Artillery game</description>
+	<lastBuildDate>Sat, 31 Oct 2020 15:58:19 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.6</generator>
+
+<image>
+	<url>https://weheartprojects.com/wp-content/uploads/2020/08/avatar_01-150x150.png</url>
+	<title>network &#8211; Artillery Royale</title>
+	<link>https://weheartprojects.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Network implementation</title>
+		<link>https://weheartprojects.com/2020/10/network-implementation/</link>
+		
+		<dc:creator><![CDATA[jrmgx]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2020 09:45:21 +0000</pubDate>
+				<category><![CDATA[Devlog]]></category>
+		<category><![CDATA[network]]></category>
+		<guid isPermaLink="false">https://weheartprojects.com/?p=246</guid>
+
+					<description><![CDATA[My idea was to implement the network part from day one because that way I could play with beta testers right away.
+
+First, I started with my own implementation and found out that it was pretty hard to get everything working. Then I benchmarked a bunch of solutions and settled down on Photon Unity Network but still didn’t get something satisfactory.
+
+I decided to go for a custom solution, let's dive into the details]]></description>
+										<content:encoded><![CDATA[
+<h2>Naive start</h2>
+
+
+
+<p>My idea was to implement the network part from day one because that way I could play with beta testers right away.</p>
+
+
+
+<p>First, I started with my own implementation using Firebase and found out that it was pretty hard to get everything working. Then I benchmarked a bunch of solutions and settled down on Photon Unity Network (PUN).</p>
+
+
+
+<p>It was great, the code was not that hard and it seemed to work. Until I had the occasion to test an early version with a friend in real condition (meaning over the internet and not on a local machine). The result was too laggy for me. I’m pretty sure I could improve some details but I didn’t want to fight against the code.</p>
+
+
+
+<p>I decided to stop developing the network part right away, but thanks to this first step I’m very aware of how to structure the code.</p>
+
+
+
+<h2>Custom solution</h2>
+
+
+
+<p>Later on, I made some prototype with a new solution of my own, tailored for that particular game. Indeed, being a turn-based game, I will go for a “turn replay” mechanism: the idea is to record the turn of the player and broadcast it to the other player in near real time. This will also allow keeping a record of any game for later replays.</p>
+
+
+
+<p>You can now see how important it is to have deterministic physics, so I don’t need to record every movement in the replay stream.</p>
+
+
+
+<h3><strong>Let&#8217;s dive into some details</strong></h3>
+
+
+
+<p>The “Stream Play” code (that&#8217;s how I call it internally) is split in two main components: the Recorder which in charge of — hum — recording events and the Player which will replay those events. Of course in between there is a websocket connection to transfer recorded event from player A to player B (it goes through a server for extra control).</p>
+
+
+
+<p>The recorder does not save everything that is happening, it only saves important information called snapshots. Those are the position of the characters, the state of the map (holes and other changes like this), positions of the bonus boxes and mines. That way at the end of the turn we are sure that both players are in sync.</p>
+
+
+
+<p>The recorder also sends the active player inputs, this time it is real time, and those inputs are played right away on the other side. But because the output could slightly diverge, the source of truth at the end of the turn will be the snapshots.</p>
+
+
+
+<p>The player, on the other end, buffers a few seconds of data, and because Artillery Royale is turn based and not real time, it does not matter much. And then runs the inputs and apply the snapshots. Both are time based that way the player can follow the right timeline.</p>
+
+
+
+<p>In the middle there is a NodeJS server. It does not do much. Mostly send data from player A to player B, using a game id that is shared across both client. This server prototype — I mean this whole network thing — is still an early prototype. But so far I have some good results!</p>
+
+
+
+<p>@koalefant asked on the <a href="https://discord.com/invite/fq78teW">discord server (click to join)</a>: “<em>I am curious why did you end up using both snapshots and input simulation for networking? Would not snapshots be sufficient?</em>”</p>
+
+
+
+<p>The answer is: basically I use custom physics for movements (characters and ammo) but I still use Unity colliders and I&#8217;m worried that collision would drift away at some point (I mean not worried, it will at some point). That&#8217;s why I&#8217;m using both inputs and snapshots.</p>
+
+
+
+<h2>Conclusion</h2>
+
+
+
+<p>We can see that I choose a deterministic way of doing by sending inputs and letting the physics plays on both sides, and because the physics in Artillery Royale is — mostly — deterministic, it works. But I&#8217;m extra careful and send snapshots just in case!</p>
+
+
+
+<p>The data that flows from both players is very light. Even real time inputs does not represent that much of information. This way of doing will also allow saving replays in a very optimized format. </p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>

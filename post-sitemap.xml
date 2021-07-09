@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="//weheartprojects.com/wp-content/plugins/wordpress-seo/css/main-sitemap.xsl"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>https://weheartprojects.com/</loc>
+		<lastmod>2021-06-24T15:24:24+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2020/12/building-a-community/</loc>
+		<lastmod>2020-12-17T16:07:19+00:00</lastmod>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/12/Main-capsule-image.png</image:loc>
+			<image:title><![CDATA[Main capsule image]]></image:title>
+		</image:image>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/12/Logo_Full_HD.png</image:loc>
+		</image:image>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/12/Capture-de%CC%81cran-2020-12-03-a%CC%80-10.16.11.png</image:loc>
+		</image:image>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2020/12/wishlist-on-steam/</loc>
+		<lastmod>2020-12-17T16:07:39+00:00</lastmod>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/12/Capture-de%CC%81cran-2020-12-10-a%CC%80-18.29.40.png</image:loc>
+			<image:title><![CDATA[Capture-décran-2020-12-10-à-18.29.40]]></image:title>
+		</image:image>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2020/11/artificial-intelligence-ai-part-two/</loc>
+		<lastmod>2020-12-17T16:08:05+00:00</lastmod>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/11/ia-move-007-2.png</image:loc>
+			<image:title><![CDATA[Graphs showing some ML data]]></image:title>
+			<image:caption><![CDATA[Graphs showing some ML data]]></image:caption>
+		</image:image>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2020/10/network-implementation/</loc>
+		<lastmod>2020-12-17T16:08:25+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2020/10/chess-battle-is-now-artillery-royale/</loc>
+		<lastmod>2020-12-17T16:08:41+00:00</lastmod>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/10/Capture-de%CC%81cran-2020-10-20-a%CC%80-17.27.10.png</image:loc>
+			<image:title><![CDATA[Chess Battle renamed into Artillery Royale]]></image:title>
+			<image:caption><![CDATA[Chess Battle renamed into Artillery Royale]]></image:caption>
+		</image:image>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2020/10/six-minutes-of-gameplay/</loc>
+		<lastmod>2020-12-17T16:08:55+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2020/09/artificial-intelligence-ai-part-one/</loc>
+		<lastmod>2020-12-17T16:09:53+00:00</lastmod>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/09/EgWYHktXYAAyRpQ.jpeg</image:loc>
+			<image:title><![CDATA[EgWYHktXYAAyRpQ]]></image:title>
+			<image:caption><![CDATA[Graph showing Cumulative Reward]]></image:caption>
+		</image:image>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2020/08/doubts/</loc>
+		<lastmod>2020-12-17T16:10:09+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2020/08/first-months-progress/</loc>
+		<lastmod>2020-12-17T16:11:11+00:00</lastmod>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/08/Capture-de%CC%81cran-2020-08-26-a%CC%80-10.44.39.png</image:loc>
+			<image:title><![CDATA[Capture d’écran 2020-08-26 à 10.44.39]]></image:title>
+		</image:image>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2020/08/character-movement/</loc>
+		<lastmod>2020-12-17T16:11:24+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2020/08/prototyping-ideas-with-a-designer/</loc>
+		<lastmod>2020-12-17T16:11:47+00:00</lastmod>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/07/sizes.jpg</image:loc>
+			<image:caption><![CDATA[Image with test for different sizes]]></image:caption>
+		</image:image>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/07/sizes.jpg</image:loc>
+			<image:caption><![CDATA[Image with test for different sizes]]></image:caption>
+		</image:image>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Brainstorming.jpg</image:loc>
+			<image:caption><![CDATA[Image with 9 objects]]></image:caption>
+		</image:image>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Character1_02-scaled.jpg</image:loc>
+			<image:caption><![CDATA[Image with 4 tests for the Queen character]]></image:caption>
+		</image:image>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2020/08/technologies/</loc>
+		<lastmod>2020-12-17T16:12:11+00:00</lastmod>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/08/500px-Unity_Technologies_logo.svg_.png</image:loc>
+		</image:image>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/08/Inclinedthrow.gif</image:loc>
+		</image:image>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/08/Capture-d%E2%80%99e%CC%81cran-2020-08-06-a%CC%80-15.20.23.png</image:loc>
+		</image:image>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2020/08/map-generator/</loc>
+		<lastmod>2020-12-17T16:12:32+00:00</lastmod>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/07/Plateform-Combinatory-smooth-05-real.png</image:loc>
+			<image:title><![CDATA[Plateform-Combinatory-smooth-05-real]]></image:title>
+		</image:image>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/07/Perlin-02.png</image:loc>
+			<image:caption><![CDATA[Random Walk example]]></image:caption>
+		</image:image>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/07/Cellular-02.png</image:loc>
+			<image:caption><![CDATA[Perlin Cave example]]></image:caption>
+		</image:image>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/07/Combinatory-04.png</image:loc>
+			<image:caption><![CDATA[Combinatory can give some good result (image)]]></image:caption>
+		</image:image>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/07/Combinatory-5pieces-01.png</image:loc>
+			<image:caption><![CDATA[Smoothed Combinatory example]]></image:caption>
+		</image:image>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/07/Plateform-Combinatory-smooth-05-real.png</image:loc>
+			<image:caption><![CDATA[An example of Combinatory + platforms + statics objects (image)]]></image:caption>
+		</image:image>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2021/01/a-star-pathfinding-is-easy/</loc>
+		<lastmod>2021-01-31T19:35:55+00:00</lastmod>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2021/01/Capture-de%CC%81cran-2021-01-31-a%CC%80-18.19.25.png</image:loc>
+			<image:title><![CDATA[A bot found a path to the player]]></image:title>
+			<image:caption><![CDATA[A bot found a path to the player]]></image:caption>
+		</image:image>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2021/01/Capture-de%CC%81cran-2021-01-31-a%CC%80-18.15.40.png</image:loc>
+		</image:image>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2021/02/ragdoll-physics-for-the-win/</loc>
+		<lastmod>2021-02-09T09:00:31+00:00</lastmod>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2021/01/Capture-de%CC%81cran-2021-01-31-a%CC%80-18.37.11.png</image:loc>
+			<image:title><![CDATA[Ragdoll physics illustration]]></image:title>
+			<image:caption><![CDATA[Ragdoll physics illustration]]></image:caption>
+		</image:image>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2020/07/artillery-royale/</loc>
+		<lastmod>2021-02-16T17:00:41+00:00</lastmod>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2020/07/LogoVolcan.jpg</image:loc>
+			<image:title><![CDATA[LogoVolcan]]></image:title>
+		</image:image>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2021/03/artillery-royale-available-in-early-access/</loc>
+		<lastmod>2021-03-31T19:24:14+00:00</lastmod>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2021/03/Youtube-Preview.png</image:loc>
+			<image:title><![CDATA[Youtube Preview]]></image:title>
+		</image:image>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2021/05/marketing-communication-round-01/</loc>
+		<lastmod>2021-05-28T13:28:25+00:00</lastmod>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2021/05/Cover-marketing-comunication-round-01.jpg</image:loc>
+			<image:title><![CDATA[Cover-marketing-comunication-round-01]]></image:title>
+		</image:image>
+		<image:image>
+			<image:loc>https://weheartprojects.com/wp-content/uploads/2021/05/twitter-people.png</image:loc>
+		</image:image>
+	</url>
+	<url>
+		<loc>https://weheartprojects.com/2020/07/stay-in-touch/</loc>
+		<lastmod>2021-06-24T15:24:24+00:00</lastmod>
+	</url>
+</urlset>
+<!-- XML Sitemap generated by Yoast SEO -->

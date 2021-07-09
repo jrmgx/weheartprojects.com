@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Devlog &#8211; Artillery Royale</title>
+	<atom:link href="https://weheartprojects.com/category/devlog/feed/" rel="self" type="application/rss+xml" />
+	<link>https://weheartprojects.com/</link>
+	<description>Turn based 2D Artillery game</description>
+	<lastBuildDate>Tue, 09 Feb 2021 09:00:31 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.7.2</generator>
+
+<image>
+	<url>https://weheartprojects.com/wp-content/uploads/2021/04/cropped-ar_a-32x32.png</url>
+	<title>Devlog &#8211; Artillery Royale</title>
+	<link>https://weheartprojects.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Ragdoll physics for the win</title>
+		<link>https://weheartprojects.com/2021/02/ragdoll-physics-for-the-win/</link>
+		
+		<dc:creator><![CDATA[jrmgx]]></dc:creator>
+		<pubDate>Tue, 09 Feb 2021 09:00:27 +0000</pubDate>
+				<category><![CDATA[Devlog]]></category>
+		<guid isPermaLink="false">https://weheartprojects.com/?p=337</guid>
+
+					<description><![CDATA[Ragdoll physics is fun to see in action.&#160;Ragdoll physics is NOT fun to implement in a full game.&#160; For sure, I wanted to have ragdoll physics in Artillery Royale. It&#8217;s fun and goes well with the explosions and destructible map.&#160; As always I checked online for tutorials and I found many of them. It seemed &#8230; <p class="link-more"><a href="https://weheartprojects.com/2021/02/ragdoll-physics-for-the-win/" class="more-link">Continue reading<span class="screen-reader-text"> "Ragdoll physics for the win"</span></a></p>]]></description>
+										<content:encoded><![CDATA[
+<p>Ragdoll physics is fun to see in action.&nbsp;<br>Ragdoll physics is <strong>NOT</strong> fun to implement in a full game.&nbsp;</p>
+
+
+
+<p>For sure, I wanted to have ragdoll physics in Artillery Royale. <br>It&#8217;s fun and goes well with the explosions and destructible map.&nbsp;</p>
+
+
+
+<p>As always I checked online for tutorials and I found many of them. <br>It seemed easy with unity: add a bunch of rigid bodies and capsule colliders linked with hinge joints and&#8230; voilà</p>
+
+
+
+<p>But what if you already have some animations going on? <br>Using some anima2D inverse kinematic or similar? <br>Those tutorials fall short.&nbsp;</p>
+
+
+
+<p>So this is how I did, it&#8217;s not that hard but there is a lot of going on.&nbsp;</p>
+
+
+
+<p>But first, please enjoy the result</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://jerome.gangneux.net/images/upload/ArtilleryRoyale/Gif/Ragdoll_grenade.gif" alt=""/><figcaption>See the ragdoll physics in action, even pushing the opponent in the way</figcaption></figure></div>
+
+
+
+<p>We have two states: <em>Playing</em> (using idle/run/jump animations), and <em>Receiving damages</em> (ragdoll part).</p>
+
+
+
+<p><em>Playing</em>: the animation (via animator) is active and your anima2D bones move. Great.&nbsp;<br><em>Receiving damages</em> (i.e.: from an explosion):&nbsp;<br> &#8211; You stop the animation and disable anima2D.<br> &#8211; Save all bones local positions and rotations.<br> &#8211; Activate all your ragdoll related rigid bodies (that will activate the associated colliders etc).<br> &#8211; Add some force to the main bone&#8217;s rigid body and let the physics engine do the magic.<br> &#8211; When the main rigid body ends moving you deactivate all the ragdoll rigid bodies.<br> &#8211; Extrapolate the current bones positions/rotations back to their saved state.<br> &#8211; Eventually you restart the animation and you&#8217;re back to <em>Playing</em> state.&nbsp;</p>
+
+
+
+<p>OMG this is some intense coding but it works quite well!</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>A star pathfinding is easy!</title>
+		<link>https://weheartprojects.com/2021/01/a-star-pathfinding-is-easy/</link>
+		
+		<dc:creator><![CDATA[jrmgx]]></dc:creator>
+		<pubDate>Sun, 31 Jan 2021 19:35:52 +0000</pubDate>
+				<category><![CDATA[Devlog]]></category>
+		<guid isPermaLink="false">https://weheartprojects.com/?p=334</guid>
+
+					<description><![CDATA[If you are like me, you probably have the impostor syndrome. And let&#8217;s be honest, I&#8217;m not good at math and often it&#8217;s a hard problem for game dev. Today I&#8217;m going to talk about A* also known as A star pathfinding. At first, I thought I would not be able to do it myself, so I &#8230; <p class="link-more"><a href="https://weheartprojects.com/2021/01/a-star-pathfinding-is-easy/" class="more-link">Continue reading<span class="screen-reader-text"> "A star pathfinding is easy!"</span></a></p>]]></description>
+										<content:encoded><![CDATA[
+<p>If you are like me, you probably have the impostor syndrome. <br>And let&#8217;s be honest, I&#8217;m not good at math and often it&#8217;s a hard problem for game dev.</p>
+
+
+
+<p>Today I&#8217;m going to talk about A* also known as A star pathfinding.</p>
+
+
+
+<p>At first, I thought I would not be able to do it myself, so I spent a lot of time looking for the right A* pre-made assets and I tried many.</p>
+
+
+
+<p>Most were hard to understand and use, plus Artillery Royale does not use anything close to a grid and basic A* assets often presume that you have some kind of grid, so it was like trying to fit circles into squares.</p>
+
+
+
+<p>Anyway, at some point I decided to learn about that A* algorithm to be able to understand a better those assets.</p>
+
+
+
+<p>I thought it was only going to be for my developer culture because it would have been too hard for me to implement from scratch, but I realized it was really easy.</p>
+
+
+
+<p>I read a bunch of blog posts and I decided to give it a go, using my own graph data.<br>And guess what? It worked like a charm.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="660" src="https://weheartprojects.com/wp-content/uploads/2021/01/Capture-décran-2021-01-31-à-18.15.40-1024x660.png" alt="" class="wp-image-342" srcset="https://weheartprojects.com/wp-content/uploads/2021/01/Capture-décran-2021-01-31-à-18.15.40-1024x660.png 1024w, https://weheartprojects.com/wp-content/uploads/2021/01/Capture-décran-2021-01-31-à-18.15.40-300x193.png 300w, https://weheartprojects.com/wp-content/uploads/2021/01/Capture-décran-2021-01-31-à-18.15.40-768x495.png 768w, https://weheartprojects.com/wp-content/uploads/2021/01/Capture-décran-2021-01-31-à-18.15.40.png 1036w" sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px" /><figcaption>The hard part was to find navigable segment on the map, here you can see the debug with pink segments that represent walkable path and blue segments that represent possible jumps.</figcaption></figure>
+
+
+
+<p>Those are the resource I learned from:</p>
+
+
+
+<ul><li><a href="https://medium.com/@nicholas.w.swift/easy-a-star-pathfinding-7e6689c7f7b2">https://medium.com/@nicholas.w.swift/easy-a-star-pathfinding-7e6689c7f7b2</a><br>This one explain the basic of A* with the simple formula behind it.</li><li><a href="https://web.archive.org/web/20171022224528/http://www.policyalmanac.org/games/aStarTutorial.htm">https://web.archive.org/web/20171022224528/http://www.policyalmanac.org/games/aStarTutorial.htm</a><br>This one is the one referenced in the previous post, really great too, more detailed.</li><li><a href="https://www.redblobgames.com/pathfinding/a-star/implementation.html#csharp">https://www.redblobgames.com/pathfinding/a-star/implementation.html#csharp</a><br>This one is the cherry on the cake, it gives you A* implementations in multiples programming languages.</li></ul>
+
+
+
+<p>To be honest, if you read this you will be able to get somewhere.</p>
+
+
+
+<p>For me the hard part was not the A* algorithm but building a graph that represent the game. A* (in the examples I found) is often used for grid based game, but it can be used for any graph.</p>
+
+
+
+<p>Now I have a working A* path finding for my AI and I&#8217;m really proud (except that I lose several days trying to figure out assets from other instead of trying to understand A*).</p>
+
+
+
+<p>Lesson learn, it&#8217;s quite often better to dive a little deeper than the asset store and look at what is behind the scene. </p>
+
+
+
+<p>Note, it&#8217;s the second time I felt in this trap, when building the <a href="https://weheartprojects.com/2020/08/technologies/#about_the_destructible_map">destructible map</a> I started with an asset and in the end switched to my own code.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Artificial Intelligence (AI) — Part two</title>
+		<link>https://weheartprojects.com/2020/11/artificial-intelligence-ai-part-two/</link>
+		
+		<dc:creator><![CDATA[jrmgx]]></dc:creator>
+		<pubDate>Thu, 12 Nov 2020 11:00:45 +0000</pubDate>
+				<category><![CDATA[Devlog]]></category>
+		<guid isPermaLink="false">https://weheartprojects.com/?p=257</guid>
+
+					<description><![CDATA[Spoiler alert, I won’t use Unity machine learning (also called mlagents) to implement artificial intelligence for my bots. If you want to know more about why, read on.]]></description>
+										<content:encoded><![CDATA[
+<p>Spoiler alert, I won’t use Unity machine learning (also called mlagents) to implement artificial intelligence for my bots. If you want to know more about why, read on.</p>
+
+
+
+<p>At first, it was hard to use, <a href="https://weheartprojects.com/2020/09/artificial-intelligence-ai-part-one/">see my previous post</a>, but then Unity helped my by giving me access to their alpha mlagents-cloud. That fixed my previous problem which was mostly a hardware problem.</p>
+
+
+
+<p>From hard to use it becomes easy to iterate, and that’s exactly what I needed to find out if it was a good approach for my idea of having bot using “real” AI.</p>
+
+
+
+<h2>Setup</h2>
+
+
+
+<p>When you try to train a model you have to give it three main data points:</p>
+
+
+
+<p>1 &#8211; Observations: what it (it&#8217;s called an agent) can see from its environment<br>2 &#8211; Actions: what the agent can do<br>3 &#8211; Rewards: information on how it performs</p>
+
+
+
+<p>So you have to think quite hard about it, but as you know your environment, in the end you can find some good inputs for each of those (so you think).</p>
+
+
+
+<p>In the very beginning I tried to train a model that would move and shot the target. </p>
+
+
+
+<h2>Let’s dive into some details</h2>
+
+
+
+<p>I had 12 observations, 10 actions and plenty of rewards points here and there. But I found out that no matter what, my model could not understand how to fire, it was moving quite alright but never firing.</p>
+
+
+
+<p>I decided to split the model in two, one for moving, and one for aim and fire. I found out online that most people do this way when the problem for the agent is too hard. It’s a first trade off but I thought that it was acceptable.</p>
+
+
+
+<p>Now I have two experiments, one to learn to move and the other to aim and fire.</p>
+
+
+
+<h3>Moving</h3>
+
+
+
+<p>The agent has to go to the target so reward is calculated on how close it is to the target. It can go left/right/jump/double jump. The map can be pretty hard to navigate for sure, even sometime impossible (something that machine learning does not like).</p>
+
+
+
+<p>After 7 iterations, where I changed the reward values, added/removed some observations, made the map easier to navigate etc. This is what I’ve got:</p>
+
+
+
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<iframe loading="lazy" title="ia move 7" width="525" height="295" src="https://www.youtube.com/embed/JP4LwR13CMs?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div></figure>
+
+
+
+<p>The agent mostly succeed <em>but</em> sometime it goes in the wrong direction, it is always jumping like crazy, it does not handle the double jump when needed, it does not look natural at all.</p>
+
+
+
+<p>Give it 8 more iterations, trying to add negative reward to the jump so it stops doing it that much etc. I did not get anything better.</p>
+
+
+
+<p>Note that even if Unity mlagents-cloud allow me to iterate quickly, it still needs a couple of hours between each model changes.</p>
+
+
+
+<h3>Firing</h3>
+
+
+
+<p>The agent has to hit the target with the bazooka so reward is calculated on how many damages it makes and also how close it is (when failing). It can aim up/down/load fire/release to shot. This time the map was made easy from the beginning. </p>
+
+
+
+<p>But after 5 iterations I found out that this was already too complex for the model. It did not manage to hit the target, only itself. The load and release action to fire is too complex from what I understood.</p>
+
+
+
+<h2>Conclusion</h2>
+
+
+
+<blockquote class="wp-block-quote"><p>The problem is that machine learning is hard, and I’m not an expert in it</p></blockquote>
+
+
+
+<p>It took me a full week, working like crazy to conclude that I’m not an expert enough to know what are the limits of this, and how to bypass them. Of course, I could spend more time on this but it seems that no matter what, the outcome will not be as good as I first imagined.</p>
+
+
+
+<p>By working on machine learning in this scope, training an agent to be a bot in a game, I also realized that doing so as a developper, you would lose all the control on your bot. I’m quite sure that when the AI is well trained the result for the player is nice, but as a game designer you can not force how your bot would behave (except making an new model each time).</p>
+
+
+
+<p>This adds up to my final conclusion: machine learning is not what I need so I’ll have to make a manual AI for Artillery Battle, and this will be hard.</p>
+
+
+
+<h2>Funny note</h2>
+
+
+
+<p>When working with machine learning, you can come across some funny (but logic) behaviors. For example in my first “fire” experiment the agent learned that not firing at all was the best way to go. Because if it failed and hit itself it was punished. So I had to give it some positive reward for firing and lower negative on hitting itself (this is an example on what you have to do between each of your experiments to get a better outcome).</p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center">
+<div class="wp-block-button"><a class="wp-block-button__link" href="https://store.steampowered.com/app/1474410" target="_blank" rel="noreferrer noopener">Get the game on Steam  <img src="https://s.w.org/images/core/emoji/13.0.1/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></a></div>
+</div>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Network implementation</title>
+		<link>https://weheartprojects.com/2020/10/network-implementation/</link>
+		
+		<dc:creator><![CDATA[jrmgx]]></dc:creator>
+		<pubDate>Fri, 30 Oct 2020 09:45:21 +0000</pubDate>
+				<category><![CDATA[Devlog]]></category>
+		<guid isPermaLink="false">https://weheartprojects.com/?p=246</guid>
+
+					<description><![CDATA[My idea was to implement the network part from day one because that way I could play with beta testers right away.
+
+First, I started with my own implementation and found out that it was pretty hard to get everything working. Then I benchmarked a bunch of solutions and settled down on Photon Unity Network but still didn’t get something satisfactory.
+
+I decided to go for a custom solution, let's dive into the details]]></description>
+										<content:encoded><![CDATA[
+<h2>Naive start</h2>
+
+
+
+<p>My idea was to implement the network part from day one because that way I could play with beta testers right away.</p>
+
+
+
+<p>First, I started with my own implementation using Firebase and found out that it was pretty hard to get everything working. Then I benchmarked a bunch of solutions and settled down on Photon Unity Network (PUN).</p>
+
+
+
+<p>It was great, the code was not that hard and it seemed to work. Until I had the occasion to test an early version with a friend in real condition (meaning over the internet and not on a local machine). The result was too laggy for me. I’m pretty sure I could improve some details but I didn’t want to fight against the code.</p>
+
+
+
+<p>I decided to stop developing the network part right away, but thanks to this first step I’m very aware of how to structure the code.</p>
+
+
+
+<h2>Custom solution</h2>
+
+
+
+<p>Later on, I made some prototype with a new solution of my own, tailored for that particular game. Indeed, being a turn-based game, I will go for a “turn replay” mechanism: the idea is to record the turn of the player and broadcast it to the other player in near real time. This will also allow keeping a record of any game for later replays.</p>
+
+
+
+<p>You can now see how important it is to have deterministic physics, so I don’t need to record every movement in the replay stream.</p>
+
+
+
+<h3><strong>Let&#8217;s dive into some details</strong></h3>
+
+
+
+<p>The “Stream Play” code (that&#8217;s how I call it internally) is split in two main components: the Recorder which in charge of — hum — recording events and the Player which will replay those events. Of course in between there is a websocket connection to transfer recorded event from player A to player B (it goes through a server for extra control).</p>
+
+
+
+<p>The recorder does not save everything that is happening, it only saves important information called snapshots. Those are the position of the characters, the state of the map (holes and other changes like this), positions of the bonus boxes and mines. That way at the end of the turn we are sure that both players are in sync.</p>
+
+
+
+<p>The recorder also sends the active player inputs, this time it is real time, and those inputs are played right away on the other side. But because the output could slightly diverge, the source of truth at the end of the turn will be the snapshots.</p>
+
+
+
+<p>The player, on the other end, buffers a few seconds of data, and because Artillery Royale is turn based and not real time, it does not matter much. And then runs the inputs and apply the snapshots. Both are time based that way the player can follow the right timeline.</p>
+
+
+
+<p>In the middle there is a NodeJS server. It does not do much. Mostly send data from player A to player B, using a game id that is shared across both client. This server prototype — I mean this whole network thing — is still an early prototype. But so far I have some good results!</p>
+
+
+
+<p>@koalefant asked on the <a href="https://discord.com/invite/fq78teW">discord server (click to join)</a>: “<em>I am curious why did you end up using both snapshots and input simulation for networking? Would not snapshots be sufficient?</em>”</p>
+
+
+
+<p>The answer is: basically I use custom physics for movements (characters and ammo) but I still use Unity colliders and I&#8217;m worried that collision would drift away at some point (I mean not worried, it will at some point). That&#8217;s why I&#8217;m using both inputs and snapshots.</p>
+
+
+
+<h2>Conclusion</h2>
+
+
+
+<p>We can see that I choose a deterministic way of doing by sending inputs and letting the physics plays on both sides, and because the physics in Artillery Royale is — mostly — deterministic, it works. But I&#8217;m extra careful and send snapshots just in case!</p>
+
+
+
+<p>The data that flows from both players is very light. Even real time inputs does not represent that much of information. This way of doing will also allow saving replays in a very optimized format. </p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center">
+<div class="wp-block-button"><a class="wp-block-button__link" href="https://store.steampowered.com/app/1474410" target="_blank" rel="noreferrer noopener">Get the game on Steam  <img src="https://s.w.org/images/core/emoji/13.0.1/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></a></div>
+</div>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Artificial Intelligence (AI) — Part one</title>
+		<link>https://weheartprojects.com/2020/09/artificial-intelligence-ai-part-one/</link>
+		
+		<dc:creator><![CDATA[jrmgx]]></dc:creator>
+		<pubDate>Fri, 11 Sep 2020 19:12:00 +0000</pubDate>
+				<category><![CDATA[Devlog]]></category>
+		<guid isPermaLink="false">https://weheartprojects.com/?p=130</guid>
+
+					<description><![CDATA[I alway thought basic AI would be a pain to code and no good to play with. So what was the solution? Real AI with neural networks!
+
+<a href="https://weheartprojects.com/2020/09/artificial-intelligence-ai-part-one/">Let's see how fun it will be...</a>]]></description>
+										<content:encoded><![CDATA[
+<p class="has-text-align-left">A demo for Artillery Royale is planned for the end of September. </p>
+
+
+
+<p>At first, this demo would have been a two-player demo only, but quickly I realized that this won&#8217;t make much sense for most of the players because right now there is no network support, nor enough players. </p>
+
+
+
+<p>So if you want to play the demo you&#8217;d have to be two in the same room, playing turn by turn (something that is intended when the game will be done but probably not ideal for a demo where I want quick iteration and feedback loop).</p>
+
+
+
+<p>On another hand, I always thought basic AI would be a pain to code and not fun to play with (because it&#8217;s based on a set of rules, the player can understand and predict them quickly). </p>
+
+
+
+<p><strong>So what was the solution?</strong></p>
+
+
+
+<p>Fortunately, we are at a time when you can use “real” AI in your games now. Real like the one in automated cars, or the one which won at the Go game. That kind of real. The one that you can train yourself giving rewards to get a neural network in return. The one that is mostly unpredictable, creative, and fun to interact with.</p>
+
+
+
+<p><strong>I mean, that&#8217;s the theory.</strong></p>
+
+
+
+<p>That being said, it&#8217;s still a hard topic. AI development is fun to play with but hard to get right. And to be honest, I&#8217;m a total noob in this area. I understand the basics and how it works as a whole but implementing it is something else.</p>
+
+
+
+<p>Fortunately, Unity has some good pieces in place to help you start, they included a good toolkit (API) and some tutorials too. I thought it will be easy to apply their example to my specific problem but OMG that was way harder than I thought.</p>
+
+
+
+<p>I had a first very naive approach, using what I&#8217;ve just learned in a good tutorial and thinking that it will be quite easy to apply to my own problem. Not true. I had to refactor all the code first to make it work with multiple environments (but that&#8217;s a detail), I&#8217;ve also had to think hard to get a good rewarding system and implement it. Find how to express AI objectives and translate that to code.</p>
+
+
+
+<p>When this was done, I had some AI training going on, and to be honest it looked like it could yield some result. But I found another problem: computational power. My old MacBook Pro is, well, old and does not have the needed CPU power to train an AI model in a reasonable time. After a lot of internet searching, I found out that my objective is too complex for my AI model anyway (no matter the power of my computer).</p>
+
+
+
+<p class="has-black-color has-text-color has-background has-small-font-size" style="background-color:#dde1e5">Note on the hardware: at some point, I was looking to pimp my MacBook with external GPU thinking that it would help. I discovered that it won&#8217;t. Tensorflow the software used behind the scene uses Nvidia GPU only (and fallback to CPU otherwise). Unfortunately, Nvidia and Apple are at war (and thus not compatible). So it won&#8217;t help.</p>
+
+
+
+<p><strong>Getting ready for part two.</strong></p>
+
+
+
+<p>Today I designed a new way of getting an AI to work. After my search, I found out that people split their objectives in small chunks and train multiple brains. Then they add some code to switch those brains during the gameplay. I&#8217;m hoping that way it will work.</p>
+
+
+
+<p>Also, Unity contacted me because they have some AI Training Cloud in their roadmap, and they may provide that service in the future. Hopefully, they will let me try it soon.</p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center">
+<div class="wp-block-button"><a class="wp-block-button__link" href="https://store.steampowered.com/app/1474410" target="_blank" rel="noreferrer noopener">Get the game on Steam  <img src="https://s.w.org/images/core/emoji/13.0.1/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></a></div>
+</div>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Character Movement</title>
+		<link>https://weheartprojects.com/2020/08/character-movement/</link>
+		
+		<dc:creator><![CDATA[jrmgx]]></dc:creator>
+		<pubDate>Fri, 14 Aug 2020 15:46:13 +0000</pubDate>
+				<category><![CDATA[Devlog]]></category>
+		<guid isPermaLink="false">https://weheartprojects.com/?p=30</guid>
+
+					<description><![CDATA[Today I spent way too much time on my character movement controller. It turns out, this part is more complicated than I expected.
+
+<a href="https://weheartprojects.com/2020/08/character-movement/">See how it went ...</a>]]></description>
+										<content:encoded><![CDATA[
+<p>Today I spent way too much time on my character movement controller. It turns out, this part is more complicated than I expected. But it&#8217;s so important to get it right, that I took the time, and spent a bunch of days working on it.</p>
+
+
+
+<p>At first, I was a little bit disappointed that something so basic was not included in the game engine. So I browsed the asset store and tried a few assets with no success. </p>
+
+
+
+<p>The problem, kin of &#8220;as usual&#8221; is that I want something very specific with a certain feel to it, and even if most of the assets were configurable I never found the right combination. I decided to give it a try myself.</p>
+
+
+
+<p>I&#8217;m a little torn, in a way it was not so hard to do, but on the other, I had to deal with so many cases. As you may know from my article on my technological choices I decided to handle most of the physics myself. So that was some work to get the character to collide with stuff and bounce when projected.</p>
+
+
+
+<p>But it&#8217;s done.</p>
+
+
+
+<ul><li>I implemented left / right move</li><li>Jump (and double jump) in player physics controller</li><li>Handled pretty much all collision cases, including when hitting multiple walls at the same time (or when falling, jumping)</li><li>Implemented distance limits (because in Artillery Royale, a character can move a certain distance regarding his class. Not sure that mechanic will make it up to the final version).</li></ul>
+
+
+
+<div class="wp-block-buttons is-content-justification-center">
+<div class="wp-block-button"><a class="wp-block-button__link" href="https://store.steampowered.com/app/1474410" target="_blank" rel="noreferrer noopener">Get the game on Steam  <img src="https://s.w.org/images/core/emoji/13.0.1/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></a></div>
+</div>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Prototyping with a designer</title>
+		<link>https://weheartprojects.com/2020/08/prototyping-ideas-with-a-designer/</link>
+		
+		<dc:creator><![CDATA[jrmgx]]></dc:creator>
+		<pubDate>Mon, 10 Aug 2020 11:24:00 +0000</pubDate>
+				<category><![CDATA[Devlog]]></category>
+		<guid isPermaLink="false">https://weheartprojects.com/?p=28</guid>
+
+					<description><![CDATA[These days I'm lucky enough to spent time with a great artist: Jean-Baptiste Dessaux. He is going to work on the graphic side of Artillery Royale.
+
+<a href="https://weheartprojects.com/2020/08/prototyping-ideas-with-a-designer/">Check out some fresh concept arts</a>]]></description>
+										<content:encoded><![CDATA[
+<p>These days I&#8217;m lucky enough to spend time with a great artist: Jean-Baptiste Dessaux (Jb for short). He is going to work on the graphic side of Artillery Royale.</p>
+
+
+
+<p>I&#8217;m very happy that this part of the project is moving forward!<br>We are going to try to answer some critical gameplay questions; for example the proportion of the character versus the map or the style of the game.</p>
+
+
+
+<h6>Size IS IMPORTANT</h6>
+
+
+
+<p>In classic artillery games, players often move military tanks (or in the particular case of the Worms series: worms). These characters are slow, which gives artillery all its meaning.</p>
+
+
+
+<p>In Artillery Royale, the characters are not intended to move slowly, they are humanoids. This could be a gameplay problem. Indeed if the player can quickly move his characters close to those of the other player, why would he use artillery rather than nearby weapons?</p>
+
+
+
+<p>That&#8217;s partly why we have another gameplay mechanism: distance limits per character. For example, the bishop can move a certain distance, the knight a bit more, etc (it&#8217;s because the game has some chess board game roots). But even for me, it seems a little bit odd.</p>
+
+
+
+<p>We will see how it goes!</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="434" src="https://weheartprojects.com/wp-content/uploads/2020/07/sizes.jpg" alt="Image with test for different sizes" class="wp-image-94" srcset="https://weheartprojects.com/wp-content/uploads/2020/07/sizes.jpg 1024w, https://weheartprojects.com/wp-content/uploads/2020/07/sizes-300x127.jpg 300w, https://weheartprojects.com/wp-content/uploads/2020/07/sizes-768x326.jpg 768w" sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px" /><figcaption>Size tests. Concept art by Jean-Baptiste Dessaux</figcaption></figure>
+
+
+
+<h6>Map</h6>
+
+
+
+<p>By working with Jb I came to realize that doing a map generator is probably too early for the game. I&#8217;ll go for a pre-built map so the gameplay can be tested in advance. It&#8217;s always sad to remove features from the codebase but that&#8217;s how programs/projects dev work.</p>
+
+
+
+<p><a href="https://weheartprojects.com/2020/08/map-generator/">Learn more about the map generator here.</a></p>
+
+
+
+<h6>First results</h6>
+
+
+
+<p>Jb is now iterating on concept arts, some for the map, and some for the main character: the queen.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="731" src="https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Brainstorming-1024x731.jpg" alt="Image with 9 objects" class="wp-image-92" srcset="https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Brainstorming-1024x731.jpg 1024w, https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Brainstorming-300x214.jpg 300w, https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Brainstorming-768x548.jpg 768w, https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Brainstorming-1536x1096.jpg 1536w, https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Brainstorming-2048x1462.jpg 2048w, https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Brainstorming-1200x857.jpg 1200w, https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Brainstorming-1980x1413.jpg 1980w" sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px" /><figcaption>Concept art for map objects by Jean-Baptiste Dessaux</figcaption></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="669" src="https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Character1_02-1024x669.jpg" alt="Image with 4 tests for the Queen character" class="wp-image-93" srcset="https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Character1_02-1024x669.jpg 1024w, https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Character1_02-300x196.jpg 300w, https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Character1_02-768x501.jpg 768w, https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Character1_02-1536x1003.jpg 1536w, https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Character1_02-2048x1337.jpg 2048w, https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Character1_02-1200x784.jpg 1200w, https://weheartprojects.com/wp-content/uploads/2020/07/Concept_Character1_02-1980x1293.jpg 1980w" sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px" /><figcaption>Concept art for the Queen character by Jean-Baptiste Dessaux</figcaption></figure>
+
+
+
+<p>I paused a bit some dev things to focus on helping him deliver. And then I could integrate his work into the game to see everything came to life.</p>
+
+
+
+<p>Exciting times!</p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center">
+<div class="wp-block-button"><a class="wp-block-button__link" href="https://store.steampowered.com/app/1474410" target="_blank" rel="noreferrer noopener">Get the game on Steam  <img src="https://s.w.org/images/core/emoji/13.0.1/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></a></div>
+</div>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Technologies</title>
+		<link>https://weheartprojects.com/2020/08/technologies/</link>
+		
+		<dc:creator><![CDATA[jrmgx]]></dc:creator>
+		<pubDate>Wed, 05 Aug 2020 12:52:03 +0000</pubDate>
+				<category><![CDATA[Devlog]]></category>
+		<guid isPermaLink="false">https://weheartprojects.com/?p=64</guid>
+
+					<description><![CDATA[In this blog post I will talk about the technological choices I made and go deeper in some technical details about the game.
+
+<a href="https://weheartprojects.com/2020/08/technologies/">Learn what is behind the pixels</a>]]></description>
+										<content:encoded><![CDATA[
+<p class="has-secondary-color has-text-color has-small-font-size">This article will be updated as I add parts to the game.<br>Last update was on the 30th of October 2020</p>
+
+
+
+<p>In this blog post, I will talk about the technological choices I made and go deeper in some technical details about the game.</p>
+
+
+
+
+
+<h2>Unity</h2>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="500" height="182" src="https://weheartprojects.com/wp-content/uploads/2020/08/500px-Unity_Technologies_logo.svg_.png" alt="" class="wp-image-88" srcset="https://weheartprojects.com/wp-content/uploads/2020/08/500px-Unity_Technologies_logo.svg_.png 500w, https://weheartprojects.com/wp-content/uploads/2020/08/500px-Unity_Technologies_logo.svg_-300x109.png 300w" sizes="(max-width: 500px) 100vw, 500px" /></figure>
+
+
+
+<p>The game is based on the Unity engine which allows you to export on all platforms, from PC/Mac to consoles via mobile platforms.<br>I made that choice because I know Unity quite well and I like coding in C#. But to be honest, everything is not perfect in the Unity world.</p>
+
+
+
+<h6>Love / hate relationship</h6>
+
+
+
+<p>I love Unity because it&#8217;s very easy to get started with, there are plenty of online tutorials and examples, and the assets store has some good gems. All this gets you to pass the prototype phase pretty quickly.</p>
+
+
+
+<p>I hate Unity because they have different ways to do the same thing (usually they buy some popular asset, integrate it in the software and that&#8217;s it, they do not remove the part it replaces). They also sometimes remove features without giving anything in replacement (last example with the networking part).</p>
+
+
+
+<h4>Physics 2D</h4>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="400" height="288" src="https://weheartprojects.com/wp-content/uploads/2020/08/Inclinedthrow.gif" alt="" class="wp-image-87"/></figure></div>
+
+
+
+<p>When I started the game, I thought “it&#8217;s going to be easy because Unity has all the needed tools including a good 2D physics engine”. But after a while playing with it, I found a bunch of blocking limitations. </p>
+
+
+
+<p>First, it&#8217;s very hard to customize, you can play with physics materials and change the mass, friction, and all those variables, even the gravity scale itself. But still, in the end, it&#8217;s a bunch of variables that you&#8217;ve changed here and there. You get easily confused and it&#8217;s not even practical to test. </p>
+
+
+
+<p>Second, and that was the blocker, the Physics engine is non-deterministic. It means that given a set of inputs (i.e.: force, mass, and start position) if you play it two times, you will probably not have the same output. Unfortunately, this is not compatible with Artillery Royale Gameplay. If a player at some point has a good aim, now the right force and play the same move again, they should get their bullet at the very same spot.</p>
+
+
+
+<p>You will see that the deterministic part is even more important because of network implementation.</p>
+
+
+
+<p>So I took some time to re-implement basic physic equations but kept some of Unity existing pieces like colliders and collision resolutions.</p>
+
+
+
+<h4>About the destructible map</h4>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="717" height="489" src="https://weheartprojects.com/wp-content/uploads/2020/08/Capture-d’écran-2020-08-06-à-15.20.23.png" alt="" class="wp-image-89" srcset="https://weheartprojects.com/wp-content/uploads/2020/08/Capture-d’écran-2020-08-06-à-15.20.23.png 717w, https://weheartprojects.com/wp-content/uploads/2020/08/Capture-d’écran-2020-08-06-à-15.20.23-300x205.png 300w" sizes="(max-width: 717px) 100vw, 717px" /></figure>
+
+
+
+<p>I found a great asset on the store that allows you to take any Sprite and make it destructible. I bought it without even thinking and at first, I was in love.</p>
+
+
+
+<p>But after some prototyping, I found out that because the asset was working on pixels and not shapes it would never render the way I wanted. </p>
+
+
+
+<p>So I made my own destructible map which is based on Sprite Mask and custom polygon colliders, all of this is easily done with Unity and a bit of shape math.</p>
+
+
+
+<h4>Map generation</h4>
+
+
+
+<p>See detailed article here: <a href="https://weheartprojects.com/2020/08/map-generator/">Map generator</a></p>
+
+
+
+<h2>Network</h2>
+
+
+
+<h6>Custom solution</h6>
+
+
+
+<p>I made some new prototype with a new solution of my own, tailored for that particular game. Indeed, being a turn-based game, I will go for a “turn replay” mechanism: the idea is to record the turn of the player (with a specific optimized stream format) and broadcast it to the other player in near real time. This will also allow keeping a record of any game for later replays.</p>
+
+
+
+<p>You can now see how important it is to have deterministic physics, so I don&#8217;t need to record every movement in the replay stream.</p>
+
+
+
+<p>See the detailed article here: <a href="https://weheartprojects.com/2020/10/network-implementation/">Network</a></p>
+
+
+
+<h2>Artificial intelligence</h2>
+
+
+
+<p><a href="https://weheartprojects.com/2020/09/artificial-intelligence-ai-part-one/">Learn about AI in this detailed blog post</a></p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center">
+<div class="wp-block-button"><a class="wp-block-button__link" href="https://store.steampowered.com/app/1474410" target="_blank" rel="noreferrer noopener">Get the game on Steam  <img src="https://s.w.org/images/core/emoji/13.0.1/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></a></div>
+</div>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Map generator</title>
+		<link>https://weheartprojects.com/2020/08/map-generator/</link>
+		
+		<dc:creator><![CDATA[jrmgx]]></dc:creator>
+		<pubDate>Sat, 01 Aug 2020 16:48:00 +0000</pubDate>
+				<category><![CDATA[Devlog]]></category>
+		<guid isPermaLink="false">https://weheartprojects.com/?p=26</guid>
+
+					<description><![CDATA[Generating a good random map is a very hard job!
+
+I used a bunch of technics to get something interesting (both in term of gameplay but also graphically)
+
+<a href="/2020/08/map-generator/">Let's see how I did...</a>]]></description>
+										<content:encoded><![CDATA[
+<p class="has-text-align-center has-secondary-color has-text-color has-small-font-size">Generating a good random map is a very hard job!</p>
+
+
+
+
+
+<h2>First attempt: Bitmaps</h2>
+
+
+
+<p>First I started with bit maps (a map is build from an array of bit, like a black/white image). </p>
+
+
+
+<p>I used a bunch of technics to get something interesting (both in term of gameplay but also graphically):</p>
+
+
+
+<ul><li>Random Walk</li><li>Perlin Cave (based on perlin noize)</li><li>Cellular Automata</li></ul>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="557" src="https://weheartprojects.com/wp-content/uploads/2020/07/Perlin-02-1024x557.png" alt="Random Walk example" class="wp-image-34" srcset="https://weheartprojects.com/wp-content/uploads/2020/07/Perlin-02-1024x557.png 1024w, https://weheartprojects.com/wp-content/uploads/2020/07/Perlin-02-300x163.png 300w, https://weheartprojects.com/wp-content/uploads/2020/07/Perlin-02-768x418.png 768w, https://weheartprojects.com/wp-content/uploads/2020/07/Perlin-02-1536x836.png 1536w, https://weheartprojects.com/wp-content/uploads/2020/07/Perlin-02-1200x653.png 1200w, https://weheartprojects.com/wp-content/uploads/2020/07/Perlin-02.png 1690w" sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px" /><figcaption>Random Walk example</figcaption></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="554" src="https://weheartprojects.com/wp-content/uploads/2020/07/Cellular-02-1024x554.png" alt="Perlin Cave example" class="wp-image-35" srcset="https://weheartprojects.com/wp-content/uploads/2020/07/Cellular-02-1024x554.png 1024w, https://weheartprojects.com/wp-content/uploads/2020/07/Cellular-02-300x162.png 300w, https://weheartprojects.com/wp-content/uploads/2020/07/Cellular-02-768x416.png 768w, https://weheartprojects.com/wp-content/uploads/2020/07/Cellular-02-1536x832.png 1536w, https://weheartprojects.com/wp-content/uploads/2020/07/Cellular-02-1200x650.png 1200w, https://weheartprojects.com/wp-content/uploads/2020/07/Cellular-02.png 1692w" sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px" /><figcaption>Perlin Cave example</figcaption></figure>
+
+
+
+<p>These are the reference I used to get started&nbsp;<a href="https://blogs.unity3d.com/2018/05/29/procedural-patterns-you-can-use-with-tilemaps-part-i/">(blogs unity3d) Procedural patterns you can use with tilemaps part 1</a>&nbsp;<a href="https://blogs.unity3d.com/2018/06/07/procedural-patterns-to-use-with-tilemaps-part-ii/">part 2</a></p>
+
+
+
+<p>With some tweaks and the right amount of smoothing I think it gave some good result.</p>
+
+
+
+<p>But when you have to move your character on these maps it&#8217;s quite challenging, and I was wondering how I can have something better on that side and keep some of the interesting shapes?</p>
+
+
+
+<h2>Second attempt: Combinatory</h2>
+
+
+
+<p>I experimented with something I call a &#8220;combinatory&#8221; map.<br>It&#8217;s a name I made up, I did not see any reference online talking about this approach.</p>
+
+
+
+<p>The idea behind it is to take some basic shapes, like rectangles, triangles, and circles in different sizes and positions, and merge them into a single block.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="590" src="https://weheartprojects.com/wp-content/uploads/2020/07/Combinatory-04-1024x590.png" alt="Combinatory can give some good result (image)" class="wp-image-36" srcset="https://weheartprojects.com/wp-content/uploads/2020/07/Combinatory-04-1024x590.png 1024w, https://weheartprojects.com/wp-content/uploads/2020/07/Combinatory-04-300x173.png 300w, https://weheartprojects.com/wp-content/uploads/2020/07/Combinatory-04-768x443.png 768w, https://weheartprojects.com/wp-content/uploads/2020/07/Combinatory-04-1536x885.png 1536w, https://weheartprojects.com/wp-content/uploads/2020/07/Combinatory-04-1200x692.png 1200w, https://weheartprojects.com/wp-content/uploads/2020/07/Combinatory-04.png 1690w" sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px" /><figcaption>Combinatory can give some good result</figcaption></figure>
+
+
+
+<p>If you apply some smoothing, you get something really convincing (IMHO). And this time it&#8217;s easy to navigate. Too easy probably.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="587" src="https://weheartprojects.com/wp-content/uploads/2020/07/Combinatory-5pieces-01-1024x587.png" alt="Smoothed Combinatory example" class="wp-image-37" srcset="https://weheartprojects.com/wp-content/uploads/2020/07/Combinatory-5pieces-01-1024x587.png 1024w, https://weheartprojects.com/wp-content/uploads/2020/07/Combinatory-5pieces-01-300x172.png 300w, https://weheartprojects.com/wp-content/uploads/2020/07/Combinatory-5pieces-01-768x440.png 768w, https://weheartprojects.com/wp-content/uploads/2020/07/Combinatory-5pieces-01-1536x880.png 1536w, https://weheartprojects.com/wp-content/uploads/2020/07/Combinatory-5pieces-01-1200x687.png 1200w, https://weheartprojects.com/wp-content/uploads/2020/07/Combinatory-5pieces-01.png 1690w" sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px" /><figcaption>Smoothed Combinatory example</figcaption></figure>
+
+
+
+<h2>Final attempt</h2>
+
+
+
+<p>When working on an important part of a game, it&#8217;s always good to ask for external feedbacks. So it&#8217;s what I did when I started to work with Jean-Baptiste the designer.</p>
+
+
+
+<p>We came to the conclusion that the solution will be to mix the combinatory approach and some pre-made elements like platforms or other static objects.</p>
+
+
+
+<p>This is what it looks like</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="544" src="https://weheartprojects.com/wp-content/uploads/2020/07/Plateform-Combinatory-smooth-05-real-1024x544.png" alt="An example of Combinatory + platforms + statics objects (image)" class="wp-image-38" srcset="https://weheartprojects.com/wp-content/uploads/2020/07/Plateform-Combinatory-smooth-05-real-1024x544.png 1024w, https://weheartprojects.com/wp-content/uploads/2020/07/Plateform-Combinatory-smooth-05-real-300x159.png 300w, https://weheartprojects.com/wp-content/uploads/2020/07/Plateform-Combinatory-smooth-05-real-768x408.png 768w, https://weheartprojects.com/wp-content/uploads/2020/07/Plateform-Combinatory-smooth-05-real-1536x816.png 1536w, https://weheartprojects.com/wp-content/uploads/2020/07/Plateform-Combinatory-smooth-05-real-2048x1087.png 2048w, https://weheartprojects.com/wp-content/uploads/2020/07/Plateform-Combinatory-smooth-05-real-1200x637.png 1200w, https://weheartprojects.com/wp-content/uploads/2020/07/Plateform-Combinatory-smooth-05-real-1980x1051.png 1980w" sizes="(max-width: 767px) 89vw, (max-width: 1000px) 54vw, (max-width: 1071px) 543px, 580px" /><figcaption>An example of Combinatory + platforms + statics objects</figcaption></figure>
+
+
+
+<h2>Conclusion</h2>
+
+
+
+<p>Building a good random map generator is very hard, on this blog post I&#8217;ve shown you only the good results, but you can be sure that one out of two tries leads to some weird and probably unplayable map.</p>
+
+
+
+<p>I&#8217;m going to work harder on this topic, but it will not be included in the playable. On this demo, you will find a handcrafted static map, tested for playability and fun!</p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center">
+<div class="wp-block-button"><a class="wp-block-button__link" href="https://store.steampowered.com/app/1474410" target="_blank" rel="noreferrer noopener">Get the game on Steam  <img src="https://s.w.org/images/core/emoji/13.0.1/72x72/2705.png" alt="✅" class="wp-smiley" style="height: 1em; max-height: 1em;" /></a></div>
+</div>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>
